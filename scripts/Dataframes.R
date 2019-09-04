@@ -23,11 +23,19 @@
 # Add R code to import survey 
 ##############################################################
 
+library(readr)
+survey <- read_delim("https://gdancik.github.io/CSC-315/datasets/survey.txt",
+                     escape_double = FALSE, trim_ws = TRUE, delim=" ")
 
 #####################################################
 # Question: How many rows (individuals) and 
 # columns(variables) are in this data?
 #####################################################
+
+nrow(survey)
+ncol(survey)
+
+survey[1, 3]
 
 colnames(survey) # get names of columns
 summary(survey) # summarizes each column; results depend on column type
