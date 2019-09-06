@@ -59,11 +59,11 @@ robby.list <- list(robby.name, robby.major)
 #11)  Read in the survey.txt file as was done in class (and put the code for this in your script!)
 library(readr)
 survey <- read_delim("https://gdancik.github.io/CSC-315/data/datasets/survey.txt",
-                     escape_double = FALSE, trim_ws = TRUE, delim="&nbsp;")
-print(survey)
+                     escape_double = FALSE, trim_ws = TRUE, delim="\t")
+View(survey)
 
 #12)	How many individuals surveyed did not use FB (i.e., spent 0 hours / week on FB)
-ncol(survey)
+
 #13) What are the GPAs of the three students with the lowest College GPAs (you 
 #    should only display these GPAs)? Hint: use the 'sort' function. 
 

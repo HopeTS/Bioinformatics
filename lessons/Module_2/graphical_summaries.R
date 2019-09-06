@@ -73,17 +73,27 @@ ggplot(counts,aes(x=status, y=Freq)) +
 
 library(readr)
 survey <- read_delim("https://gdancik.github.io/CSC-315/data/datasets/survey.txt", "\t")
-
+View(survey)
 ###################################################################         
 # 1. Construct a relative frequency table for the number of males
 #     and females
+
+t <- table(survey$Gender)
+prop.table(t)
+
 # 2. Construct a bar graph for the proportion of individuals that 
 #    agree or disagree that same-sex marriage should be legal in
 #    all 50 states. The title of the chart should be 
 #    "Same sex marriage should be legal in all 50 states"
 ###################################################################
+ggplot(survey, aes(x="Same-Sex-Marriage-Legalization", y=..count.. / sum(..count..))) + 
+  geom_bar(aes(fill = "Same-Sex-Marriage-Legalization")) +
+  ggtitle("Same sex marriage should be legal in all 50 states") +
+  labs(x = "Response", y = "Relative frequency") + theme_classic()
 
-
+colnames(survey)
+View(survey)
+colnames(survey)[6] <- "Response"
               
 
 ###################################################################
