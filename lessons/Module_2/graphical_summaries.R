@@ -89,7 +89,7 @@ prop.table(t)
 ggplot(survey, aes(x="Same-Sex-Marriage-Legalization", y=..count.. / sum(..count..))) + 
   geom_bar(aes(fill = "Same-Sex-Marriage-Legalization")) +
   ggtitle("Same sex marriage should be legal in all 50 states") +
-  labs(x = "Response", y = "Relative frequency") + theme_classic()
+  labs(x = "Response", y = "Relative frequency", fill="Response") + theme_classic()
 
 colnames(survey)
 View(survey)
