@@ -1,5 +1,5 @@
 ########################################################
-# Name:
+# Name: Robby Bergers
 # CSC-315
 # Lab #2: Graphical and Numerical Summaries of Data
 ########################################################
@@ -18,11 +18,17 @@
 #   (available at https://gdancik.github.io/CSC-315/data/datasets/CSC-315_survey.csv)
 #   and add the code for this to the script. 
 
-
+library(readr)
+survey <- read_delim("https://gdancik.github.io/CSC-315/data/datasets/CSC-315_survey.csv", ",")
+View(survey)
 
 # 2. How many students completed the survey?
 
+nrow(survey) # = 17 => 17 students
+
 # 3. How many questions were asked (i.e., how many columns are there)?
+
+ncol(survey) # = 9 => 9 questions
 
 # 4. Construct a frequency table for the response to whether someone is a
 #    'Cat' or 'Dog' person.
@@ -40,6 +46,7 @@
 #     constructed using what was covered in class.
 
 
+
 # 7. Construct a Pareto Chart using the frequencies for favorite CSC course (you may display
 #    either frequency or relative frequency). Note: you may do this using
 #    either 'geom_bar' with the raw data or 'geom_col' to work directly
@@ -48,6 +55,7 @@
 #    If you want to remove the missing values, you can use the 'drop_na'
 #    function from the 'tidyverse' package. What course or courses were most
 #    commonly listed as the favorite?
+
 
 
 # 8. Construct a relative frequency table for whether or not a student consumes alcohol
@@ -60,12 +68,14 @@
 #    "Does not consume alcohol"
 
 
+
 # 9. Out of the people who heard "Laurel" in this class, would they rather fight one 
 #    horse-sized duck or one hundred duck-sized horses? Answer this question by using
 #    dplyr's 'filter' function to create a new data.frame for those who heard "Laurel". 
 #    Then generate a relative frequency table for the 'Fight' column results. 
 #    Repeat the analysis to answer the same question for those who heard "Yanny"
 #    What do you conclude about a person's choice regarding the "Fight" question?
+
 
 
 # 10. Construct a histogram for Alcohol consumption, by using the hist() function with the argument
@@ -107,4 +117,7 @@
 
 
 # 17. Create a vector with 20 values that has a standard deviation of 0.
+
+x <- c(seq(0, 40, 2))
+print(x)
 
