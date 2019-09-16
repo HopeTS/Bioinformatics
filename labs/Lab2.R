@@ -95,13 +95,10 @@ prop.table(table(survey.alcohol.rate))
 #    Repeat the analysis to answer the same question for those who heard "Yanny"
 #    What do you conclude about a person's choice regarding the "Fight" question?
 
-print(filter(survey, survey$YannyOrLaurel == "Laurel"))
+library(dplyr)
 survey.laurel <- filter(survey, survey$YannyOrLaurel == "Laurel")
 survey.laurel.fight <- survey.laurel$Fight
-prop.table(table(survey.table.fight))
-
-# It's giving me an error about a matrix but I'm not working with a matrix...
-# It looks like the filter function does not work on tables for me?
+prop.table(table(survey.laurel.fight))
 
 # 10. Construct a histogram for Alcohol consumption, by using the hist() function with the argument
 #     breaks = 14 to set the number of groupings. Describe the shape of its distribution. 
