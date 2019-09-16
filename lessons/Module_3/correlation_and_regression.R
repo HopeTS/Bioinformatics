@@ -18,10 +18,16 @@ internet.penetration <- internet$Internet.Penetration..Percent.
 # fb penetration?
 ##############################################
 
+mean(fb.penetration)
+mean(internet.penetration)
+
 ##############################################
 # describe the shape of the distributions for
 # internet penetration.
 ##############################################
+
+hist(fb.penetration) # Bimodal
+hist(internet.penetration) # Bimodal
 
 ##################################################
 # scatterplots: plots a point for each pair of 
