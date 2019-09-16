@@ -33,10 +33,21 @@ ncol(survey) # = 9 => 9 questions
 # 4. Construct a frequency table for the response to whether someone is a
 #    'Cat' or 'Dog' person.
 
+survey.table <- table(survey$CatOrDogPerson)
+prop.table(survey.table)
+View(survey.table)
+
 # 5. Construct a frequency bar graph for the response to "Are you a cat or a dog person?",
 #    where the bars are colored using the default colors. Remove the legend by 
 #    adding the following component to the end of your 
 #    ggplot() code: theme(legend.position = "none")
+
+library(ggplot2)
+survey.df <- data.frame(survey$CatOrDogPerson)
+ggplot(data.frame(survey$CatOrDogPerson), 
+       aes(x = "Cat Or Dog Person") + geom_bar(aes(fill = "Number of Students")), 
+       theme(legend.position = "none"))
+
 
 
 # 6. Construct a relative frequency table for favorite CSC course. 
@@ -45,6 +56,9 @@ ncol(survey) # = 9 => 9 questions
 #     keyword NA, are correctly ignored by R when the tables are 
 #     constructed using what was covered in class.
 
+survey.table <- table(survey$CatOrDogPerson)
+prop.table(survey.table)
+View(survey.table)
 
 
 # 7. Construct a Pareto Chart using the frequencies for favorite CSC course (you may display
@@ -82,15 +96,24 @@ ncol(survey) # = 9 => 9 questions
 #     breaks = 14 to set the number of groupings. Describe the shape of its distribution. 
 #     Is it unimodal, bimodal, or flat. Is it skewed right, skewed left, or symmetric?
 
+survey.hist <- hist(survey$Alcohol, breaks=14)
+print("I don't understand this kind of math, but it looks unimodal and skewed left")
 
 # 11. Calculate the mean and median for Alcohol consumption. 
 #     Which is a better measure of averages? (Note: although these numbers are similar,
 #     one would still be considered better than the other -- why?)
 
+the.mean <- mean(survey$Alcohol)
+the.median <- median(survey$Alcohol)
 
 # 12. What is the 75th percentile for HS GPA??
 
+print(quantile(survey$hsGPA, .75))
+
+
 # 13. Ten percent of indivduals have HS GPAs above what value?
+
+print(quantile(survey$hsGPA, .9))
 
 # 14. Create side-by-side boxplots showing the average hours of sleep 
 #     based on a person's gender, and answer the questions below:
@@ -114,10 +137,12 @@ ncol(survey) # = 9 => 9 questions
 
 
 # 16. For college GPA, what is the variance and standard deviation?
+survey.16.var <- var(survey$collegeGPA)
+survey.16.sd <- sd(survey$collegeGPA)
 
 
 # 17. Create a vector with 20 values that has a standard deviation of 0.
 
-x <- c(seq(0, 40, 2))
-print(x)
+x <- c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+sd(x)
 
