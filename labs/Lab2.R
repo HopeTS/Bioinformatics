@@ -105,14 +105,15 @@ prop.table(table(survey.laurel.fight))
 #     Is it unimodal, bimodal, or flat. Is it skewed right, skewed left, or symmetric?
 
 survey.hist <- hist(survey$Alcohol, breaks=14)
-print("I don't understand this kind of math, but it looks unimodal and skewed right")
+# I don't understand this kind of math, but it looks unimodal and skewed right
 
 # 11. Calculate the mean and median for Alcohol consumption. 
 #     Which is a better measure of averages? (Note: although these numbers are similar,
 #     one would still be considered better than the other -- why?)
 
-the.mean <- mean(survey$Alcohol)
-the.median <- median(survey$Alcohol)
+print(mean(survey$Alcohol))
+print(median(survey$Alcohol))
+# The median would be better because there are outliers
 
 # 12. What is the 75th percentile for HS GPA??
 
@@ -145,8 +146,8 @@ print(quantile(survey$hsGPA, .9))
 
 # 16. For college GPA, what is the variance and standard deviation?
 
-survey.16.var <- var(survey$collegeGPA)
-survey.16.sd <- sd(survey$collegeGPA)
+print(var(survey$collegeGPA))
+print(sd(survey$collegeGPA))
 
 # 17. Create a vector with 20 values that has a standard deviation of 0.
 
