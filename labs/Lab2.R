@@ -48,8 +48,6 @@ ggplot(data.frame(survey$CatOrDogPerson),
        aes(x = "Cat Or Dog Person") + geom_bar(aes(fill = "Number of Students")), 
        theme(legend.position = "none"))
 
-
-
 # 6. Construct a relative frequency table for favorite CSC course. 
 #     What proportion of students said that CSC-340 was their 
 #     favorite? Note that the two missing values, denoted with the 
@@ -81,6 +79,11 @@ View(survey.table)
 #    function to change the names from FALSE and TRUE to "Consumes alcohol" and
 #    "Does not consume alcohol"
 
+survey.alcohol <- survey$Alcohol > 0
+prop.table(survey.alcohol)
+names(survey.alcohol) <- c("FALSE"="Does not consume alcohol", "TRUE"="Does consume alcohol")
+print(ftable(survey.alcohol))
+
 
 
 # 9. Out of the people who heard "Laurel" in this class, would they rather fight one 
@@ -90,6 +93,8 @@ View(survey.table)
 #    Repeat the analysis to answer the same question for those who heard "Yanny"
 #    What do you conclude about a person's choice regarding the "Fight" question?
 
+survey[survey$YannyOrLaurel == 'Laurel']
+print(survey.laurel)
 
 
 # 10. Construct a histogram for Alcohol consumption, by using the hist() function with the argument
