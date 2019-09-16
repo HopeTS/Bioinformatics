@@ -43,10 +43,14 @@ View(survey.table)
 #    ggplot() code: theme(legend.position = "none")
 
 library(ggplot2)
-survey.df <- data.frame(survey$CatOrDogPerson)
-ggplot(data.frame(survey$CatOrDogPerson), 
-       aes(x = "Cat Or Dog Person") + geom_bar(aes(fill = "Number of Students")), 
-       theme(legend.position = "none"))
+survey.cod <- survey$CatOrDogPerson
+survey.cod.t <- table(survey.cod)
+prop.table(survey.cod.t)
+survey.cod.df = data.frame(survey.cod = survey.cod)
+
+ggplot(survey.cod.df, aes(x=survey.cod)) + geom_bar(aes(fill=survey.cod)) + 
+  ggtitle("Cats or Dogs??") + 
+  labs(x = "Cat or Dog", y = "Frequency") + theme(legend.position = "none")
 
 # 6. Construct a relative frequency table for favorite CSC course. 
 #     What proportion of students said that CSC-340 was their 
@@ -54,10 +58,9 @@ ggplot(data.frame(survey$CatOrDogPerson),
 #     keyword NA, are correctly ignored by R when the tables are 
 #     constructed using what was covered in class.
 
-survey.table <- table(survey$CatOrDogPerson)
-prop.table(survey.table)
-View(survey.table)
-
+survey.6 <- survey$FavoriteCourse
+survey.6.t <- prop.table(table(survey.6))
+View(survey.6)
 
 # 7. Construct a Pareto Chart using the frequencies for favorite CSC course (you may display
 #    either frequency or relative frequency). Note: you may do this using
@@ -79,11 +82,10 @@ View(survey.table)
 #    function to change the names from FALSE and TRUE to "Consumes alcohol" and
 #    "Does not consume alcohol"
 
-survey.alcohol <- survey$Alcohol > 0
-prop.table(survey.alcohol)
-names(survey.alcohol) <- c("FALSE"="Does not consume alcohol", "TRUE"="Does consume alcohol")
-print(ftable(survey.alcohol))
-
+survey.alcohol <- survey$Alcohol
+survey.alcohol.rate <- survey.alcohol > 0
+survey.alcohol.rate <- c(survey.alcohol, names(survey.alcohol.rate) <- c ("Consumes alcohol", "Does not consume alcohol"))
+prop.table(table(survey.alcohol.rate))
 
 
 # 9. Out of the people who heard "Laurel" in this class, would they rather fight one 
@@ -93,16 +95,20 @@ print(ftable(survey.alcohol))
 #    Repeat the analysis to answer the same question for those who heard "Yanny"
 #    What do you conclude about a person's choice regarding the "Fight" question?
 
-survey[survey$YannyOrLaurel == 'Laurel']
-print(survey.laurel)
+print(filter(survey, survey$YannyOrLaurel == "Laurel"))
+survey.laurel <- filter(survey, survey$YannyOrLaurel == "Laurel")
+survey.laurel.fight <- survey.laurel$Fight
+prop.table(table(survey.table.fight))
 
+# It's giving me an error about a matrix but I'm not working with a matrix...
+# It looks like the filter function does not work on tables for me?
 
 # 10. Construct a histogram for Alcohol consumption, by using the hist() function with the argument
 #     breaks = 14 to set the number of groupings. Describe the shape of its distribution. 
 #     Is it unimodal, bimodal, or flat. Is it skewed right, skewed left, or symmetric?
 
 survey.hist <- hist(survey$Alcohol, breaks=14)
-print("I don't understand this kind of math, but it looks unimodal and skewed left")
+print("I don't understand this kind of math, but it looks unimodal and skewed right")
 
 # 11. Calculate the mean and median for Alcohol consumption. 
 #     Which is a better measure of averages? (Note: although these numbers are similar,
@@ -114,7 +120,6 @@ the.median <- median(survey$Alcohol)
 # 12. What is the 75th percentile for HS GPA??
 
 print(quantile(survey$hsGPA, .75))
-
 
 # 13. Ten percent of indivduals have HS GPAs above what value?
 
@@ -142,12 +147,13 @@ print(quantile(survey$hsGPA, .9))
 
 
 # 16. For college GPA, what is the variance and standard deviation?
+
 survey.16.var <- var(survey$collegeGPA)
 survey.16.sd <- sd(survey$collegeGPA)
-
 
 # 17. Create a vector with 20 values that has a standard deviation of 0.
 
 x <- c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+# I'm inept don't judge me
 sd(x)
 
