@@ -20,7 +20,7 @@ survey.3.y <- survey$Fight
 chart.3 <- ggplot() + geom_bar(aes(x = survey.3.x, fill = survey.3.y)) + 
   labs(x = "Yanny Or Laurel", y="Number of Students", fill = "Duck sized horse vs Horse sized ducks") + 
   theme_classic()
-View(chart.3)
+chart.3
 
 
 # 4
@@ -40,8 +40,27 @@ View(t.4b)
 # 5
 t.hsGPA <- survey$hsGPA
 t.collegeGPA <- survey$collegeGPA
-t.5 <- ggplot()  + geom_point(aes(t.hsGPA, t.collegeGPA)) +
+t.5 <- ggplot()  + geom_point(aes(survey$hsGPA, survey$collegeGPA)) +
   theme_classic() + 
-  labs(x = "Internet Penetration (%)", y = "FB Penetration (%)",
-       title = "Internet and FB penetration rates")
-View(t.5)
+  labs(x = "High School GPA", y = "College GPA",
+       title = "High School vs. College GPA") +
+plot(t.5)
+t.fit <- lm(t.hsGPA ~ t.collegeGPA)
+summary(t.fit)
+
+ggplot(data = NULL, aes(survey$hsGPA, survey$collegeGPA)) + 
+  geom_point() +
+  theme_classic() + 
+  labs(x = "High School GPA", y = "College GPA",
+       title = "High School vs. College GPA") +
+  geom_smooth(method = "lm", color = "darkred")
+
+
+# 6
+
+
+# 7
+
+
+# 8
+View(mtcars)
