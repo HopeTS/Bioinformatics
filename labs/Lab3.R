@@ -66,10 +66,29 @@ ggplot(data = NULL, aes(survey$hsGPA, survey$collegeGPA)) +
 
 
 # 6
+plot.cor <-function(x,y, location = "topleft", ...) {
+  plot(x,y, ...)
+  abline(h = mean(y), col = "red")
+  abline(v = mean(x), col = "red")
+  l = lm(y~x)
+  abline(l, col = "blue")
+  r = cor(x,y)
+  r = paste("r = ", round(r,2))
+  legend(x = location,r)
+}
+plot.cor(survey$hsGPA, survey$collegeGPA)
+# There is a positive correlation between high school GPA and college GPA
 
 
 # 7
 
 
+
 # 8
 View(mtcars)
+
+
+# 9
+
+
+# 10
