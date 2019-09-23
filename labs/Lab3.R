@@ -10,7 +10,10 @@ library(readr)
 
 
 # 1
-happiness <- tribble(~Income, ~NotTooHappy, ~PrettyHappy, ~VeryHappy, "Above Average", 26, 233, 164, "Average", 117, 473, 293, "Below Average", 172, 383, 132)
+happiness <- tribble(~Income, ~NotTooHappy, ~PrettyHappy, ~VeryHappy, 
+                     "Above Average", 26, 233, 164, 
+                     "Average", 117, 473, 293, 
+                     "Below Average", 172, 383, 132)
 View(happiness)
 
 
@@ -24,7 +27,8 @@ View(survey)
 survey.3.x <- survey$YannyOrLaurel
 survey.3.y <- survey$Fight
 chart.3 <- ggplot() + geom_bar(aes(x = survey.3.x, fill = survey.3.y)) + 
-  labs(x = "Yanny Or Laurel", y="Number of Students", fill = "Duck sized horse vs Horse sized ducks") + 
+  labs(x = "Yanny Or Laurel", y="Number of Students", 
+       fill = "Duck sized horse vs Horse sized ducks") + 
   theme_classic()
 chart.3
 
@@ -46,7 +50,8 @@ View(t.4b)
 # 5
 t.hsGPA <- survey$hsGPA
 t.collegeGPA <- survey$collegeGPA
-t.5 <- ggplot()  + geom_point(aes(survey$hsGPA, survey$collegeGPA)) +
+t.5 <- ggplot()  + 
+  geom_point(aes(survey$hsGPA, survey$collegeGPA)) +
   theme_classic() + 
   labs(x = "High School GPA", y = "College GPA",
        title = "High School vs. College GPA") +
