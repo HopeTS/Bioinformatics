@@ -138,14 +138,18 @@ rownames(grades) <- c("Steve", "Joe", "Jane", "Andrea")
 # 1. Using the apply function, find the following:
 
 # (a) mean grade for each student (rows)
+
 apply(grades, 1, function(x) {
   mean(x)
 })
 
+
 # (b) mean grade for each assignment (columns)
+
 apply(grades, 2, function(y) {
   mean(y)
 })
+
 
 # 2. Write a function called 'is.A' that takes a vector, and returns TRUE 
 #    if the mean value of the vector is >= 90 (in the A range). Then use
@@ -153,3 +157,9 @@ apply(grades, 2, function(y) {
 #    the students with an A average. Can you write code that outputs 
 #    only the names of the students with As?
 
+is.A <- function(x) {
+  m <- mean(x)
+  m >= 90
+}
+
+apply(grades, 1, is.A)
