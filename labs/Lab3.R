@@ -45,8 +45,6 @@ t.5 <- ggplot()  + geom_point(aes(survey$hsGPA, survey$collegeGPA)) +
   labs(x = "High School GPA", y = "College GPA",
        title = "High School vs. College GPA") +
 plot(t.5)
-t.fit <- lm(t.hsGPA ~ t.collegeGPA)
-summary(t.fit)
 
 ggplot(data = NULL, aes(survey$hsGPA, survey$collegeGPA)) + 
   geom_point() +
