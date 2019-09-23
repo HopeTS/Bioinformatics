@@ -162,4 +162,6 @@ is.A <- function(x) {
   m >= 90
 }
 
-apply(grades, 1, is.A)
+index <- apply(grades, 1, is.A)
+names <- names(index)
+names[index]
