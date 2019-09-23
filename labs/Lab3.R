@@ -54,7 +54,7 @@ t.5 <- ggplot()  +
   geom_point(aes(survey$hsGPA, survey$collegeGPA)) +
   theme_classic() + 
   labs(x = "High School GPA", y = "College GPA",
-       title = "High School vs. College GPA") +
+       title = "High School vs. College GPA")
 plot(t.5)
 
 ggplot(data = NULL, aes(survey$hsGPA, survey$collegeGPA)) + 
