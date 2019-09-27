@@ -94,17 +94,17 @@ min.max(ages)
 #    a person agrees or disagrees with same sex marriage 
 #    Was there an association between FB usage and views on same sex marriage
 #    in this class?
-      ggplot(m) + geom_col(aes(type, value, fill = presence)) +
-        labs(y = "Proportion", fill = "Pesticide status", 
-             title = "Distribution of pesticide status by food type") +
-        theme_classic()
+#      ggplot(m) + geom_col(aes(type, value, fill = presence)) +
+#        labs(y = "Proportion", fill = "Pesticide status", 
+#             title = "Distribution of pesticide status by food type") +
+#        theme_classic()
       
       ## display a side-by-side barchart, by changing the position argument 
       ## to 'dodge' in geom_bar
-      ggplot(m) + geom_col(aes(type, value, fill = presence), position = "dodge") +
-        labs(y = "Proportion", fill = "Pesticide status", 
-             title = "Distribution of pesticide status by food type") +
-        theme_classic()
+#      ggplot(m) + geom_col(aes(type, value, fill = presence), position = "dodge") +
+#        labs(y = "Proportion", fill = "Pesticide status", 
+#             title = "Distribution of pesticide status by food type") +
+#        theme_classic()
       
   
 # 11.  Construct a stacked bar graph showing with one bar for males and one for 
