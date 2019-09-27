@@ -31,6 +31,12 @@ evens
 #    argument and returns the the smallest positive number from the vector.
 #    For example, for v <- c(-3,10,2), min.positive(v) would return 2
 
+min.positive <- function(x) {
+  min(x[x>=0])
+}
+ex <- c(2, -6, -9, 15, 4)
+min.positive(ex)
+
 
 # 4. Write a function called min.max which takes a vector x as an argument 
 #    and returns a list containing two named elements, the minimum of x and the
