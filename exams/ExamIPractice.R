@@ -111,5 +111,7 @@ min.max(ages)
 #      females, and each bar showing the proportion who agree and disagree
 #      with marijuana legalization. Was there a relationship between gender
 #      and views on marijuana legalization in this class?
+      survey
+      t <- table(filter(survey, Gender == 'Male'), filter(survey, Gender == 'Female'))
 
     
