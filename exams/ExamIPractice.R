@@ -42,14 +42,17 @@ min.max <- function(x) {
 min.max(ages)
 
 
-
 # 5. Include the following code in your script to create a matrix filled with 
 #    5 columns and 20 rows, that is filled with random numbers between 0 and 1.
 
       m = matrix(runif(100), ncol = 5, nrow = 20)
+      ran.m <- matrix(sample(0:1, 100, replace=T), ncol = 5, nrow = 20)
+      ran.m
 
 #   (a) Find the median of each row 
+      apply(ran.m, 1, median)
 #   (b) Find the median of each column.
+      apply(ran.m, 2, median)
 
 # 6. Run the command below to read in an old class survey:
       
@@ -68,6 +71,7 @@ min.max(ages)
     
     # (a) Fit a linear model that predicts college GPA from Alcohol consumption
     #     (i)  Find and interpret the y-intercept
+      
     #     (ii) Find and interpret the slope
       
         
