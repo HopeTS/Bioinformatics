@@ -77,17 +77,37 @@ min.max(ages)
     
     # (a) Fit a linear model that predicts college GPA from Alcohol consumption
     #     (i)  Find and interpret the y-intercept
+      fit <- lm(survey$College.GPA ~ survey$Alcohol)
+      fit  # Intercept: 3.3267
       
     #     (ii) Find and interpret the slope
+      plot(fit)
+      abline(survey$College.GPA, survey$Alcohol)
       
         
 # 9. For those who agree with same sex marriage legalization, find the mean 
 #    and standard deviation of College GPA.
+      testing <- survey$Marijuana.Legalization == 'Agree'
+      survey.9 <- filter(survey, Marijuana.Legalization == 'Agree')
+      mean(survey.9$College.GPA)    # ~ 3
+      sd(survey.9$College.GPA)    # 0.45
       
 # 10. Construct side-by-side boxplots for FB usage based on whether or not
 #    a person agrees or disagrees with same sex marriage 
 #    Was there an association between FB usage and views on same sex marriage
 #    in this class?
+      
+      ggplot(m) + geom_col(aes(type, value, fill = presence)) +
+        labs(y = "Proportion", fill = "Pesticide status", 
+             title = "Distribution of pesticide status by food type") +
+        theme_classic()
+      
+      ## display a side-by-side barchart, by changing the position argument 
+      ## to 'dodge' in geom_bar
+      ggplot(m) + geom_col(aes(type, value, fill = presence), position = "dodge") +
+        labs(y = "Proportion", fill = "Pesticide status", 
+             title = "Distribution of pesticide status by food type") +
+        theme_classic()
       
   
 # 11.  Construct a stacked bar graph showing with one bar for males and one for 
