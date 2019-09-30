@@ -124,6 +124,23 @@ prop.heads
 # and getting at least 2 heads.
 #########################################################
 
+## example function: flip a fair coin 3 times, 
+#     determine if we get at least 2 heads
+# returns TRUE if we get at least 2 heads, FALSE otherwise
+flip.two.heads <- function() {
+  f <- sample(c("H", "T"), 3, replace = TRUE)
+  count <- sum(f=="H")
+  count >= 2
+}
+
+# flip a coin 2 times, repeat 1000 times
+two.heads <- replicate(1000, flip.two.heads())
+
+# find the empirical probability of getting 2 heads = 
+# number of times we get 2 heads / number of experiments
+prop.heads <- sum(two.heads) / length(two.heads)
+prop.heads
+
 
 #########################################################
 ## classical probability - when all outcomes
