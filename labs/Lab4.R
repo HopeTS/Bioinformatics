@@ -20,13 +20,20 @@ library(gtools)
 #1. If one card is selected at random, what is the probability that 
 
 #  (a) the card is the ace of spades?
+a1 <- paste(toString((1/52)*100), '%', sep='')
+print(a1)
 
 #  (b) the card is NOT the ace of spades?
+a2 <- paste(toString((51/52)*100), '%', sep='')
+print(a2)
 
 #  (c) the card is an ace (of any suit)?
+a3 <- paste(toString((4/52)*100), '%', sep='')
+print(a3)
 
 #  (d) the card is an ace OR a 4?
-
+a4 <- paste(toString((8/52)*100), '%', sep='')
+print(a4)
 
 # Use R to answer the remaining questions. You MUST use R to 
 # enumerate and analyze the sample space or to carry out 
