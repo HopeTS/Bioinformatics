@@ -48,6 +48,7 @@ print(a4)
 #  (a) Use the 'permutations' function from 'gtools'
 #      to enumerate the sample space obtained by rolling two dice.
 #      (Note: the correct sample space has 36 outcomes)
+    permutations()
 
 #  (b) Use R and your answer to (a) to find the number of outcomes 
 #      where the sum is 7
@@ -71,12 +72,12 @@ print(a4)
 
 #   (b) Use the 'replicate' function to roll two dice 5000 times, to
 #       get a vector containing the sum of die rolls for each experiment.
-
+      nums <- c(replicate(5000, roll2()))
 
 #   (c) Find the number of times you rolled a seven, and divide by the 
 #       number of experiments to find the empirical probability
-
-
+      nums.table <- table(nums)
+      
 
 
 # Definition: A probability distribution of a discrete random variable 
@@ -191,6 +192,10 @@ full.house(c(9, 9, 8, 7, 2))
 #    approximately 0.00144 (roughly 1/694). Note for testing purposes,
 #    that there are 18 full houses in the first 20,000 rows of the
 #    hands matrix
-
-
-
+matches <- 0
+for (hand in hands) {
+  if (full.house(hand)) {
+    matches <- matches + 1
+  }
+}
+print(matches)
