@@ -144,7 +144,7 @@ deck <- rep(1:13,4)
 hands <- combinations(52, 5, deck, repeats.allowed = FALSE, set = FALSE)
 
 #6. How many possible poker hands are there?
-
+print(length(hands))
 
 #7. The function below takes a vector (corresponding to a hand of cards)
 #   and returns TRUE if the hand contains a four-of-a-kind
