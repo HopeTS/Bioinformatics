@@ -171,6 +171,20 @@ four.of.a.kind <- function(x) {
 #8. Create a function that determines whether a vector 'x' contains 
 #   a full house (i.e., 3 of a kind and 1 pair). You can assume
 #   that 'x' includes exactly 5 cards.
+full.house <- function(x) {
+  t <- table(x)
+  m <- max(t)
+  if (m == 3) {
+    z <- min(t)
+    if (z == 2) {
+      return (TRUE)
+    }
+  }
+  return (FALSE)
+}
+
+full.house(c(9, 9, 9, 8, 8))
+full.house(c(9, 9, 8, 7, 2))
 
 
 #9. Show that the probability of being dealt a full house is 
