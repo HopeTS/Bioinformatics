@@ -115,13 +115,14 @@ pdist
 
 #   (a) Use the 'permutations' function to enumerate the sample
 #       space obtained from flipping a coin 3 times.
-
+    a4 <- permutations(2, 3, c("H", "T"), repeats.allowed = TRUE)
+    
 #   (b) Using your sample space, find X = the number of heads for each
 #       set of 3 coins. 
-
+    num.heads <- rowSums(a4 == "H") == 3
 #   (c) Create a relative frequency table for X, which is the probability
 #       distribution of X = the number of heads in 3 coin tosses.
-
+    prop.table(table(num.heads))
 #   (d) Create a bar graph of the relative frequencies, using ggplot and
 #       labeling the x-axis, y-axis, and title. 
 
@@ -210,5 +211,6 @@ full.house(c(9, 9, 8, 7, 2))
 #    approximately 0.00144 (roughly 1/694). Note for testing purposes,
 #    that there are 18 full houses in the first 20,000 rows of the
 #    hands matrix
-apply(hands, 1, full.house)
+num.matches <- apply(hands, 1, full.house)
+print(sum(num.matches == TRUE))
 
