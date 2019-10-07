@@ -48,14 +48,30 @@ print(a4)
 #  (a) Use the 'permutations' function from 'gtools'
 #      to enumerate the sample space obtained by rolling two dice.
 #      (Note: the correct sample space has 36 outcomes)
-    permutations()
+    a2 <- permutations(6, 2, c(1, 2, 3, 4, 5, 6), repeats = TRUE)
+    print(nrow(a2))
 
 #  (b) Use R and your answer to (a) to find the number of outcomes 
 #      where the sum is 7
+fun <- function(x) {
+  if (x[1] + x[2] == 7) {
+    return(x)
+  }
+}
+  b2 <- apply(a2, 1, fun)
+  b2 <- Filter(Negate(is.null), b2)
+  print(length(b2))
 
 #  (c) divide your answer from (b) by the size of the sample space
 #      to find the probability that the sum is 7.
-
+  c.a2 <- length(a2) / 2
+  c.b2 <- length(b2)
+  print(c.a2)
+  print(c.b2)
+  c.a2 / c.b2
+  # a2 nrow is 36, b2 nrow is 6, I don't understand how but
+  # a2 length gets doubled but b2 length does not, so I have
+  # to divide the length by 2
 
 
 #3. Calculate the same probability in (2) but by finding the empirical 
