@@ -188,12 +188,14 @@ four.of.a.kind <- function(x) {
 #8. Create a function that determines whether a vector 'x' contains 
 #   a full house (i.e., 3 of a kind and 1 pair). You can assume
 #   that 'x' includes exactly 5 cards.
+matches <- 0
 full.house <- function(x) {
   t <- table(x)
   m <- max(t)
   if (m == 3) {
     z <- min(t)
     if (z == 2) {
+      matches <- matches + 1
       return (TRUE)
     }
   }
@@ -208,10 +210,5 @@ full.house(c(9, 9, 8, 7, 2))
 #    approximately 0.00144 (roughly 1/694). Note for testing purposes,
 #    that there are 18 full houses in the first 20,000 rows of the
 #    hands matrix
-matches <- 0
-for (hand in hands) {
-  if (full.house(hand)) {
-    matches <- matches + 1
-  }
-}
-print(matches)
+apply(hands, 1, full.house)
+
