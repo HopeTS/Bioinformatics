@@ -1,5 +1,5 @@
 ####################################################################
-# Name: Robby
+# Name: Robby B
 # Lab 7: Hypothesis testing for population means.
 
 # For these questions, we will assume that the Central 
@@ -76,7 +76,8 @@ print('We can conclude that the average hours of sleep college students get each
 #     'x' is a vector of College GPAs for 'cat' people and 'y' is a 
 #     vector of College GPAs for 'dog' people
 
-  d4 <- t.test(survey$collegeGPA, survey$CatOrDogPerson);
+  #d4 <- t.test(survey$collegeGPA, survey$CatOrDogPerson);
+  # Not working for some reason
 
 # (d) Find the p-value from the result of the t.test function
 
