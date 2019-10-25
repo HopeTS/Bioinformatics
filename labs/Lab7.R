@@ -1,5 +1,5 @@
 ####################################################################
-# Name:
+# Name: Robby
 # Lab 7: Hypothesis testing for population means.
 
 # For these questions, we will assume that the Central 
@@ -33,14 +33,23 @@ survey <- read_csv("https://gdancik.github.io/CSC-315/data/datasets/CSC-315_surv
 
 # (b) Calculate / find the test statistic (and specify the degrees of freedom)
 
+mu_sleep <- 7.9
+res <- t.test(c(survey$Sleep), mu = mu_sleep)
+
 # (c) Find the p-value using the t.test function
+
+res$p.value
 
 # (d) Find the p-value 'manually' based on the test statistic and
 #     appropriate degrees of freedom 
 
+2*pt(-abs(res$statistic), df = res$parameter)
+res$estimate
+
 # (e) State the conclusion regarding the null and alternative hypotheses in 
 #     the context of this problem.
 ##########################################################################
+print('We can conclude that the average hours of sleep college students get each night is ~6.4, which is less than the null hypothesis of 7.9')
 
 ##########################################################################
 # 2. Is there evidence that the college GPA of a 'cat' person 
@@ -66,6 +75,8 @@ survey <- read_csv("https://gdancik.github.io/CSC-315/data/datasets/CSC-315_surv
 #     corresponding degrees of freedom. Note that in your call to t.test,
 #     'x' is a vector of College GPAs for 'cat' people and 'y' is a 
 #     vector of College GPAs for 'dog' people
+
+  d4 <- t.test(survey$collegeGPA, survey$CatOrDogPerson);
 
 # (d) Find the p-value from the result of the t.test function
 
@@ -124,6 +135,7 @@ ggplot(cereal) + geom_boxplot(aes(shelf, sugars, fill = shelf)) +
 
 # (a) State the null and alternative hypotheses, making sure
 #     to define the 'mu' parameters
+
 
 # (b) Use the t.test function to find the test statistic 
 #     and corresponding degrees of freedom
