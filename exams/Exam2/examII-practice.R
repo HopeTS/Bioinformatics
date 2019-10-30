@@ -110,10 +110,8 @@ blackjack.hands / sum(blackjack.hands, not.blackjack.hands)
 #h0: The smoking rate in adults has not changed significantly from 2013 to 2015
 #ha: The smoking rate in adults has changed significantly from 2013 to 2015
 
-# (b) Calculate / find the test statistic (and specify the degrees of freedom)
-b2013 <- c(1000, 180)
-b2015 <- c(1000, 163)
-btest <- t.test(b2013, b2015, var.eq=T)
+# (b) Calculate / find the test statistic
+btest <- prop.test(163, 1000, p = 0.18)
 
 # (c) Find the p-value 
 btest$p.value
@@ -129,6 +127,9 @@ btest$p.value
 #   the null hypothesis.
 
 # (a) Z = -1.76
+pnorm(-1.76)
+2*pnorm(-abs(-1.76))
+#p value > 0.05, therefore FAIL TO REJECT null hypothesis
 
 # (b) Z = 2.9
 
@@ -165,6 +166,7 @@ b4
 # (a) The null and alternative hypotheses (these must include parameters 
 #     such as p and mu, and definitions for these parameters)
 
+
 # (b) What would it mean in the context of this problem if a Type I error occured?
 
 # (c) What would it mean in the context of this problem if a Type II error occured?
@@ -174,28 +176,28 @@ b4
 #   the United States differs from 50%.
 
 #a.
-#h0: The proportion of females in the US is 50%
-#ha: The proportion of females in the US is not 50%
+#h0: P is equal to 0.5
+#ha: P is not equal to 0.5
 
 #b.
-#type 1: Concluding the proportion of females in the US is 50% when it is not
+#type 1: Concluding P is not equal to 0.5 when it is
 
 #c.
-#type 2: Concluding the proportion of females in the US is not 50% when it is
+#type 2: Concluding P is equal to 0.5 when it is not
 
 
 #6. A study is conducted to determine whether or not the average age of an adult
 #   male in the U.S. is different than the average age of an adult female.
 
 #a.
-#h0: The average age of an adult male in the US is the same as the average age of an adult female
-#ha: The average age of an adult male in the US is different then the average age of an adult female
+#h0: MU M - MU F = 0
+#ha: MU M - MU F != 0
 
 #b.
-#type 1: Concluding the average age is the same when it's not
+#type 1: Concluding MU M - MU F != 0 when it = 0
 
 #c.
-#type 2: Concluding the average age is different when it's not
+#type 2: Concluding MU M - MU F = 0 when it != 0
 
 
 #7. A study is conducted to compare two drugs that reduce flu symptoms in a group of
@@ -203,13 +205,13 @@ b4
 #   and for drug #2, 37 / 111 individuals have reduced flu symptoms. 
 
 # i) State the null and alternative hypotheses
-#h0: Drug 1 and drug 2 have similar results
-#ha: Drug 1 and drug 2 have different results
+#h0: p1 - p2 = 0
+#ha: p1 - p2 != 0
 
 # ii)  Find the test statistic
 drug1 <- c(43, 100)
 drug2 <- c(37, 111)
-btest <- t.test(b2013, b2015, var.eq=T)
+btest <- prop.test(43, 100, p = (37/111))
 btest
 
 # iii) Find the p-value 
