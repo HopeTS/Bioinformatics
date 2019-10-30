@@ -107,9 +107,11 @@ blackjack.hands / sum(blackjack.hands, not.blackjack.hands)
 
 # (a) State the null and alternative hypotheses
 
-#h0
+#h0: The smoking rate in adults has not changed significantly from 2013 to 2019
+#ha: The smoking rate in adults has changed significantly from 2013 to 2019
 
 # (b) Calculate / find the test statistic (and specify the degrees of freedom)
+
 
 # (c) Find the p-value 
 
@@ -154,9 +156,29 @@ blackjack.hands / sum(blackjack.hands, not.blackjack.hands)
 #5. A study is conducted to determine whether the proportion of females in
 #   the United States differs from 50%.
 
+#a.
+#h0: The proportion of females in the US is 50%
+#ha: The proportion of females in the US is not 50%
+
+#b.
+#type 1: Concluding the proportion of females in the US is 50% when it is not
+
+#c.
+#type 2: Concluding the proportion of females in the US is not 50% when it is
+
 
 #6. A study is conducted to determine whether or not the average age of an adult
 #   male in the U.S. is different than the average age of an adult female.
+
+#a.
+#h0: The average age of an adult male in the US is the same as the average age of an adult female
+#ha: The average age of an adult male in the US is different then the average age of an adult female
+
+#b.
+#type 1: Concluding the average age is the same when it's not
+
+#c.
+#type 2: Concluding the average age is different when it's not
 
 
 #7. A study is conducted to compare two drugs that reduce flu symptoms in a group of
