@@ -142,11 +142,23 @@ btest$p.value
 #   the null hypothesis.
 
 # (a) t = -3.11, n = 23
+n = 23
+a4 <- 2*pt(-abs(-3.11), df=n-1)
+a4
+#p < 0.05, therefore null hypothesis is REJECTED
 
 # (b) t = .29, n = 97
+n = 97
+b4 <- 2*pt(-abs(0.29), df=n-1)
+b4
+#p > 0.05, therefore FAIL TO REJECT null hypothesis
 
 # (c) t = -1.3, n = 348
+n = 348
 
+b4 <- 2*pt(-abs(-1.3), df=n-1)
+b4
+#p > 0.05, therefore FAIL TO REJECT null hypothesis
 
 # For questions (5) - (6), state the following:
 
