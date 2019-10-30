@@ -107,16 +107,21 @@ blackjack.hands / sum(blackjack.hands, not.blackjack.hands)
 
 # (a) State the null and alternative hypotheses
 
-#h0: The smoking rate in adults has not changed significantly from 2013 to 2019
-#ha: The smoking rate in adults has changed significantly from 2013 to 2019
+#h0: The smoking rate in adults has not changed significantly from 2013 to 2015
+#ha: The smoking rate in adults has changed significantly from 2013 to 2015
 
 # (b) Calculate / find the test statistic (and specify the degrees of freedom)
-
+b2013 <- c(1000, 180)
+b2015 <- c(1000, 163)
+btest <- t.test(b2013, b2015, var.eq=T)
 
 # (c) Find the p-value 
+btest$p.value
 
 # (d) State the conclusion regarding the null and alternative hypotheses in 
 #     the context of this problem.
+
+#Null hypothesis confirmed, alternative hypothesis refuted
 
 #3. Consider a null hypothesis about a population proportion or comparing two 
 #   population proportions, and the following Z test statistics. Find the p-value, 
