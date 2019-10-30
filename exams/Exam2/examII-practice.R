@@ -191,11 +191,18 @@ btest$p.value
 #   and for drug #2, 37 / 111 individuals have reduced flu symptoms. 
 
 # i) State the null and alternative hypotheses
+#h0: Drug 1 and drug 2 have similar results
+#ha: Drug 1 and drug 2 have different results
 
 # ii)  Find the test statistic
+drug1 <- c(43, 100)
+drug2 <- c(37, 111)
+btest <- t.test(b2013, b2015, var.eq=T)
+btest
 
 # iii) Find the p-value 
+btest$p.value
 
 # iv) State the conclusion. Is there evidence that one drug is more effective than the other?
-
+# We can conclude that both drugs have similar results
     
