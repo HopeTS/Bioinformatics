@@ -32,18 +32,73 @@ sum(hand) # find the point total
 #    Then simulate 5000 blackjack games and find the empirical probability 
 #    that the player is dealt a blackjack. 
 
+# Blackjack function
+blackjack <- function() {
+  hand <- sample(deck, 2) #draw 2 hands from the deck
+  hand[hand > 10] <- 10 
+  hand[hand == 1] <- 11  
+  if (sum(hand) == 21) {
+    return (TRUE)
+  } else {
+    return (FALSE)
+  }
+}
+
+# Blackjack Trials
+blackjack.true <- 0
+blackjack.false <- 0
+blackjack.trials <- c(1:5000)
+for(i in blackjack.trials) {
+  blackjack.trial <- blackjack()
+  if (blackjack.trial == TRUE) {
+    blackjack.true <- blackjack.true + 1
+  } else {
+    blackjack.false <- blackjack.false + 1
+  }
+}
+
+# Empirical probability
+blackjack.ep <- blackjack.true / 5000
+blackjack.ep
 
 
 # (b). Find the theoretical / classical probability of being a dealt a blackjack, by
 #      answering the questions below. The code below generates the sample space for 
 #      all 2-card hands
-  
 library(gtools)
 hands <- combinations(52, 2, deck, repeats.allowed = FALSE, set = FALSE)
+hands[hands > 10] <- 10 
+hands[hands == 1] <- 11  
 
 #   (i) How many possible 2-card hands are there?
+sum(hands)
 
 #   (ii) Find the probability that a player is dealt a blackjack
+
+# Set up
+blackjack.hands <- 0
+not.blackjack.hands <- 0
+check.blackjack <- function(x) {
+  if (sum(x[1], x[2]) == 21) {
+    sum(x[1], x[2])
+    return (TRUE)
+  } else {
+    return (FALSE)
+  }
+}
+
+# Get data
+blackjack.prob <- apply(hands, 1, check.blackjack)
+for (val in blackjack.prob) {
+  if (val == TRUE) {
+    blackjack.hands <- blackjack.hands + 1
+  } else {
+    not.blackjack.hands <- not.blackjack.hands + 1
+  }
+}
+
+# Find probability
+blackjack.hands / sum(blackjack.hands, not.blackjack.hands)
 
 
 #2. In 2013, the proportion of adults who smoke in the U.S. was 0.18. 
@@ -51,6 +106,8 @@ hands <- combinations(52, 2, deck, repeats.allowed = FALSE, set = FALSE)
 #   Is there evidence that the smoking rate has changed?
 
 # (a) State the null and alternative hypotheses
+
+#h0
 
 # (b) Calculate / find the test statistic (and specify the degrees of freedom)
 
