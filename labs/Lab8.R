@@ -14,9 +14,9 @@ library(ggplot2)
 # Download the raw data (GSE1297_RAW.tar file) and extract the files  
 # Read in the data using theReadAffy() function and the 
 # celfile.path argument which must be set appropriately below
-################################################################
+#################################################################
 
-GSE1297 <- ReadAffy(celfile.path = "/Users/dancikg/Downloads/")
+GSE1297 <- ReadAffy(celfile.path = "c:/Users/berge/Documents/GitHub/Bioinformatics/labs/GSM_DATA/")
 
 ################################################################
 # Process the gene expression data using the Robust Multi-Array 
@@ -37,7 +37,6 @@ GSE1297 <- ReadAffy(celfile.path = "/Users/dancikg/Downloads/")
 
 GSE1297.p <- read.delim("http://bioinformatics.easternct.edu/BCBET2/GSE1297.p.xlsx")
 
-
 ##################################################################
 # The code below gets the group names from the sample names of the 
 # pheno table and constructs a scatterplot of MMSE and NFT
@@ -55,6 +54,9 @@ groups <- gsub(" .*", "", sample.names)
 # update the phenotype data with the group names
 GSE1297.p <- mutate(GSE1297.p, AD.status = groups)
 
+GSE1297.rma = rma(GSE1297)
+GSE1297.expr = exprs(GSE1297.rma)
+
 ggplot(GSE1297.p, aes(MMSE.Score, NFT.Score)) +
   geom_point(aes(color = AD.status), size = 3) + 
   geom_smooth(method = "lm", color = "black", se = FALSE) +
@@ -63,7 +65,6 @@ ggplot(GSE1297.p, aes(MMSE.Score, NFT.Score)) +
   theme(legend.box.background = element_rect(color = "black")) +
   scale_color_manual(values = c("darkblue", "orange", "purple", "red"))
   
-
 ########################################################
 # Describe the relationship between MMSE and NFT score.
 # Would you expect a person with a high MMSE score to
@@ -75,6 +76,8 @@ ggplot(GSE1297.p, aes(MMSE.Score, NFT.Score)) +
 # Alzheimer's disease. One of the probes for 
 # APOE is 203381_s_at
 #####################################################
+
+probe = c(GSE1297.expr[rowname == "203381_s_at"])
 
 ############################################################
 # Construct side-by-side boxplots showing the expression
