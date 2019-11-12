@@ -71,13 +71,14 @@ ggplot(GSE1297.p, aes(MMSE.Score, NFT.Score)) +
 # have Alzheimer's Disease?
 #####################################################
 
+print("On average, a higher NFT score indicates a lower MMSE score. 
+      The higher the MMSE score, the less likely the patient has Alzheimer's.")
+
 #####################################################
 # A gene called APOE is associated with late onset
 # Alzheimer's disease. One of the probes for 
 # APOE is 203381_s_at
 #####################################################
-
-probe = c(GSE1297.expr[rowname == "203381_s_at"])
 
 ############################################################
 # Construct side-by-side boxplots showing the expression
@@ -86,7 +87,14 @@ probe = c(GSE1297.expr[rowname == "203381_s_at"])
 # using ggplot -- see notes for an example)
 ############################################################
 
+probe.203381sat = match("203381_s_at", rownames(GSE1297.expr))
 
+df = data.frame(expr = GSE1297.expr[probe.203381sat,], type = GSE1297.p$AD.status)
+
+ggplot(df,aes(type, expr, fill = type)) + geom_boxplot() +
+  theme_classic() + theme(legend.position = "none") + 
+  labs(x = "AD Severity", y = "Log2 Expression") +
+  ggtitle("Expression vs. AD Severity")
 
 ###########################################################
 # Perform a two sample t-test to evaluate whether or not
@@ -95,8 +103,19 @@ probe = c(GSE1297.expr[rowname == "203381_s_at"])
 # fold change and the p-value and state your conclusion.
 ###########################################################
 
+severity.test <- t.test(df$type == "Severe", df$type == "Control")
 
+split <- split(df$expr, df$type, drop = TRUE)
 
+lapply <- lapply(split, mean)
+#lapply$Control - lapply$Severe
+log.foldc <- lapply$Control - lapply$Severe
+fc <- 2**log.foldc
+
+severity.test$p.value
+fc
+print('P value: 0.56, Fold change: 0.89')
+print('The P value shows that there is a difference in expression between control and severe group')
 
 #####################################################
 # Construct a scatterplot of gene expression of
@@ -109,6 +128,19 @@ probe = c(GSE1297.expr[rowname == "203381_s_at"])
 # expression? 
 #####################################################
 
+probe.match <- match("203381_s_at", rownames(GSE1297.expr))
+
+df <- data.frame(expr = GSE1297.expr[probe.match,], MMSE = GSE1297.p$MMSE.Score,
+                type = GSE1297.p$AD.status)
+
+ggplot(df, aes(expr, MMSE)) +
+  geom_point(aes(color = type), size = 3) +
+  geom_smooth(method = "lm", color = "black", se = FALSE) +
+  theme_classic() +
+  labs(x = "203381_s_at Expression", y = "MMSE Score")
+  ggtitle("203381_s_at Expression vs. AD Severity") +
+  theme(legend.box.background = element_rect(color = "black")) +
+  scale_color_manual(values = c("darkblue", "orange", "purple", "red"))
 
 ##########################################################
 # The cor.test function can be used to evaluate the
@@ -124,19 +156,59 @@ probe = c(GSE1297.expr[rowname == "203381_s_at"])
 # statistically significant 
 ##########################################################
 
+  cor.test(df$expr, df$MMSE)
+  print('P value: 0.56')
+  print('The high P value shows that there is a statistically significant relationship between expression and MMSE score')
+  
 #####################################################
 ## Repeat the boxplot, t.test, scatterplot, and 
 ## cor.test for the gene PSEN1 using the probe 
 ## 207782_s_at
 #####################################################
 
+  probe.match.2 = match("207782_s_at", rownames(GSE1297.expr))
+  df.2 = data.frame(expr = GSE1297.expr[probe.match.2,], type = GSE1297.p$AD.status)
+  
+  ggplot(df.2,aes(type, expr, fill = type)) + geom_boxplot() +
+    theme_classic() + theme(legend.position = "none") + 
+    labs(x = "AD Severity", y = "Log2 Expression") +
+    ggtitle("Expression vs. AD Severity")
+
+  severity.test.2 = t.test(df.2$type == "Severe", df.2$type == "Control")
+  split.2 <- split(df.2$expr, df.2$type, drop = TRUE)
+  lapply.2 <- lapply(split.2, mean)
+  log.foldc.2 <- lapply.2$Control - lapply.2$Severe
+  fc.2 <- 2**log.foldc.2
+  
+  severity.test.2
+  fc.2
+  
+  print('P value: 0.57, Fold change: 0.63')
+  print('The P value shows there is a statistically significant difference for 207782_s_at')
+  
+  df.3 <- data.frame(expr = GSE1297.expr[probe.match.2,], MMSE = GSE1297.p$MMSE.Score,
+                   type = GSE1297.p$AD.status)
+  
+  ggplot(df.3, aes(expr, MMSE)) +
+    geom_point(aes(color = type), size = 3) +
+    geom_smooth(method = "lm", color = "black", se = FALSE) +
+    theme_classic() +
+    labs(x = "207782_s_at Expression", y = "MMSE Score")
+  ggtitle("207782_s_at Expression vs. AD Severity") +
+    theme(legend.box.background = element_rect(color = "black")) +
+    scale_color_manual(values = c("darkblue", "orange", "purple", "red"))
+  
+  cor.test(df.3$expr, df.3$MMSE)
+  
+  print('P value: 0.01')
+  print('The P value shows that there is no statistically significant difference between 207782_s_at and MMSE')
 
 ########################################################
 ## Based on the above analyses, what is your conclusion
 ## about the association between the genes APOE and
 ## PSEN1 and Alzheimer's Disease / cognitive 
 ## impairment?
-###############################################s######
+######################################################
 
 ###########################################################
 ## If you are interested, more information about
