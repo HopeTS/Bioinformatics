@@ -50,6 +50,44 @@ fit2 = eBayes(fit2)
 ## get all probes with FDR < 0.05, sorted by p-value 
 tt.05 <- topTable(fit2,sort.by = "p", p.value = 0.05, number = nrow(GSE1297.expr))
 
+
+################################################ 
+# Classwork (Random questions)
+################################################
+
+# What is the expression value for the 3rd probe
+  
+  exprVal <- GSE1297.expr[3,2]
+
+# Find the gene that has the highest average (mean) expression in this dataset
+
+  # Find the mean expression for each probe
+    means <- rowMeans(GSE1297.expr)
+
+  # Find probe with the highest mean expression
+    m <- max(means)
+    means[means == m]
+    # or
+    which.max(means)
+    
+  # Find the gene corresponding to the probe with maximum expression
+    
+    # (get platform info)
+    platform <- annotation(GSE1297[[1]])
+    pl <- getGEO(platform)
+    pl <- Table(pl)
+    
+    # (get gene from particular probe)
+    w <- which.max(means)
+    probe <- names(w)
+    m <- match(probe, pl$ID)
+    pl[m,]$`Gene Symbol`
+    View(pl[m,])
+    
+################################################
+# End classwork
+################################################
+    
 ##############################################################################
 # In classification problems, it is often desirable to scale each probe,
 # so that no single probe has a dominating effect. Below is an example of
