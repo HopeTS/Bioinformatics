@@ -1,5 +1,5 @@
 ##############################################################
-# Name:
+# Name: Robby Bergers
 # CSC-315
 # Lab #9: Limma, heatmaps, and analyzing processed GEO data
 #############################################################
@@ -13,6 +13,7 @@ library(limma)
 library(GEOquery)
 library(ggplot2)
 library(dplyr)
+library(affy)
 
 ##################################################################################
 # 1.The code below reads in our class survey data and performs a 
@@ -24,10 +25,22 @@ library(dplyr)
 #   groups, using the formula: 
 #     mean hours of sleep for dog people - mean hours of sleep for cat people
 ##################################################################################
-survey <- read.csv("https://gdancik.github.io/CSC-315/data/datasets/CSC-315_survey.csv")
-s <- split(survey$Sleep, survey$CatOrDogPerson)
-res <- t.test(s$Cat, s$Dog, var.equal = TRUE)
+  survey <- read.csv("https://gdancik.github.io/CSC-315/data/datasets/CSC-315_survey.csv")
+  s <- split(survey$Sleep, survey$CatOrDogPerson)
+  res <- t.test(s$Cat, s$Dog, var.equal = TRUE)
 
+  res
+
+  s2 <- split(survey$Alcohol, survey$CatOrDogPerson)
+  s2.cat <- mean(s2$Cat)
+  s2.dog <- mean(s2$Dog)
+  s2.alcohol <- s2.dog - s2.cat
+  s2.alcohol
+
+  s.cat <- mean(s$Cat)
+  s.dog <- mean(s$Dog)
+  s.sleep <- s.dog - s.cat
+  s.sleep
 
 ##################################################################################
 # 2.Fit a linear model that predicts Hours of Sleep based on 
@@ -36,10 +49,14 @@ res <- t.test(s$Cat, s$Dog, var.equal = TRUE)
 #   'dog person' is the treatment (x = +1)
 #    
 # (a) Find and interpret the y-intercept of the regression line in the
-#      context of this problem.
+#      context of this problem.'
+
+
 
 # (b) Find and interpret the slope of the regression line in the context of 
 #     this problem
+
+
 
 # (c) What is the p-value for the hypothesis test that there is a
 #     significant difference in Hours of Sleep between the two groups?
@@ -60,9 +77,21 @@ res <- t.test(s$Cat, s$Dog, var.equal = TRUE)
 #    (non-responsive) to this drug. 
 ###############################################################
 
+# GSE19143 <- getGEO("GSE19143")
+# GSE19143.rma <- rma(GSE19143)
+  GSE19143 <- ReadAffy(celfile.path = "c:/Users/berge/Documents/GitHub/Bioinformatics/labs/GSM_DATA_2/")
+  GSE19143.rma <- rma(GSE19143)
+  GSE19143.expr <- exprs(GSE19143.rma)
+  
+  View(GSE19143.expr)
+
 # (a) How many samples had their gene expression values profiled?
+  
+  ncol(GSE19143)
 
 # (b) How many probes are on the array?
+  
+  nrow(GSE19143.expr)
 
 # (c) Take the log2 of the expression data, and generate a boxplot
 #     to show that the samples are properly processed and normalized.
@@ -104,7 +133,7 @@ res <- t.test(s$Cat, s$Dog, var.equal = TRUE)
 # 8. How many probes are there for the gene IGHM on the platform
 # in this study? Note: you must search for this gene using the
 # regular expressions covered in the GEO-and-limma.R script. Your 
-# code must also output the number of probes. 
+# code must also output the number of probes.
 ####################################################################
 
 
