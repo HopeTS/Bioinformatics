@@ -31,11 +31,7 @@ library(affy)
 
   res
 
-  s2 <- split(survey$Alcohol, survey$CatOrDogPerson)
-  s2.cat <- mean(s2$Cat)
-  s2.dog <- mean(s2$Dog)
-  s2.alcohol <- s2.dog - s2.cat
-  s2.alcohol
+# s2 <- split(survey$Alcohol, survey$CatOrDogPerson)
 
   s.cat <- mean(s$Cat)
   s.dog <- mean(s$Dog)
@@ -51,7 +47,7 @@ library(affy)
 # (a) Find and interpret the y-intercept of the regression line in the
 #      context of this problem.'
 
-
+  
 
 # (b) Find and interpret the slope of the regression line in the context of 
 #     this problem
@@ -112,6 +108,8 @@ library(affy)
 # individuals and how many are down-regulated (i.e., have lower 
 # expression) in resistant individuals. 
 #####################################################################
+  
+  
 
 ########################################################################
 # 6. Construct a heatmap of these top 16 probes, with individuals 
@@ -120,6 +118,8 @@ library(affy)
 # you may do this with the first 16 probes in the expression matrix).
 ########################################################################
 
+  
+  
 ########################################################################
 # 7. If you answered question 5 correctly, the SECOND hit 
 # should be for the probe 209374_s_at. Show that this probe
