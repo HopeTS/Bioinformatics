@@ -38,6 +38,13 @@ load(url("https://gdancik.github.io/CSC-315/data/hw/Challenge.RData"))
 
 # 1) Find differentially expressed probes in your training dataset
 
+View(X.test)
+View(X.train)
+View(Y.train)
+
+one <- apply(X.test, 1, row.scale)
+View(one)
+
 # 2) Using the differentially expressed probes, evaluate a knn classifier 
 #    using leave-one-out cross-validation in the training data set. 
 #    Don't forget to scale your data (training and testing). 
