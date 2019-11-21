@@ -1,6 +1,7 @@
 library(limma)
 library(class)
 library(GEOquery)
+library(ggplot2)
 
 rm(list = ls()) ## this will delete all objects in the workspace
 
@@ -51,7 +52,7 @@ fit2 = contrasts.fit(fit, contrast.matrix)
 fit2 = eBayes(fit)
 
 FDR = topTable(fit2, p.value = 0.05)
-#FDR = topTable(fit2, p.value = 0.05, number = nrow(X.train))
+# FDR = topTable(fit2, p.value = 0.05, number = nrow(X.train))
 
 # 2) Using the differentially expressed probes, evaluate a knn classifier 
 #    using leave-one-out cross-validation in the training data set. 
@@ -69,7 +70,7 @@ df = data.frame(probe1 = X.scale[1,], probe2 = X.scale[2,], Y.train = Y.train)
 
 ggplot(df, aes(probe1,probe2, color = Y.train)) + geom_point() +
   theme_classic() + ggtitle("Scaled expression of probes") +
-  scale_color_manual(values = c("red", "blue")) 
+  scale_color_manual(values = c("red", "blue"))
 
 # 3) Classify the test samples, and email your predictions to
 #    dancikg@easternct.edu with the subject: Bioinformatics Challenge. In the
