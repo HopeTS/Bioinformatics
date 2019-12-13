@@ -8,7 +8,12 @@
 # Directions: Modify this script to add R code in order to answer the questions 
 # and/or complete the steps below. 
 
+library(limma)
+library(GEOquery)
 library(ggplot2)
+library(dplyr)
+library(affy)
+library(GEOquery)
 
 # 1.Fit a linear model that predicts Petal Width based on the type of flower from
 # the iris dataset (see below). Code your explanatory variable 
@@ -17,7 +22,18 @@ library(ggplot2)
 #    
 # (a) Find and interpret the y-intercept of the regression line in the
 #      context of this problem.
+
+a1.width <- iris$Petal.Width
+a1.species <- iris$Species
+
+a1.lm <- lm(a1.width ~ a1.species)
+a1.lm
+summary(a1.lm) # 0.246
+
 # (b) Find and interpret the slope in the context of this problem
+  
+  
+
 # (c) Based on your linear model, what is the p-value for the hypothesis test that there is a
 #     significant difference in Petal Width between the two flower types? 
 #     Note that you can extract the exact p-value from the coefficients object
@@ -38,17 +54,27 @@ ggplot(iris, aes(Petal.Length, Petal.Width, color = Species)) +
 #   (epirubicin and docetaxel). Read in the processed data for GSE29561, 
 #   and extract the expression data and phenotype data. Note: this data
 #   is already on the log2 scale. 
+
+  GSE29561 <- getGEO("GSE29561")
+  GSE29561.expr <- exprs(GSE29561[[1]])
+
 #   Answer the following questions based on the expression data:
 #    (a) How many samples are there? 
+
+  ncol(GSE29561.expr) #22
+
 #    (b) How many probes are profiled?
+  
+  nrow(GSE29561.expr) #22283
+
 #    (c) What is the mean expression value of the 3rd probe?
 
-
+  mean(GSE29561.expr[,3:3]) #6.43426
+  
 # 3. In the phenotype data table, characteristics_ch1.1 indicates whether 
 #    the sample responded to the therapy (treatment response = 1) or 
 #    not (treatment response = 0).  What proportion of samples responded 
 #    to the therapy?
-
 
 
 # 4.  Is the probe 202271_at differentially expressed between samples 
